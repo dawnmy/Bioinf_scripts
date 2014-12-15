@@ -16,11 +16,11 @@ def parseGB(gb):
 	return header_seq
 
 
-def countCodon(nseq):							# define a function for counting codons
-	codon_seq = []								# a list to store the codons of the given sequence
-	codon_count = {}							# a list of tuple to store the count for every 64 codon
+def countCodon(nseq):					# define a function for counting codons
+	codon_seq = []					# a list to store the codons of the given sequence
+	codon_count = {}				# a list of tuple to store the count for every 64 codon
 	for i in range(0,len(nseq),3):
-		codon = nseq[i:i+3]						# splice sequence into codon
+		codon = nseq[i:i+3]			# splice sequence into codon
 		codon_seq.append(codon)
 	for j in codon_table:
 		codon_count[j] = (codon_seq.count(j), codon_table[j])	# count each codon
