@@ -36,4 +36,4 @@ def GA(num = 30, round = 10):
     return decode(gene[0]) + [function_g(gene[0])]
      
 if __name__ == '__main__':
-    print GA(30, 10),
+    print GA(30, 10)
