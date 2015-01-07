@@ -20,11 +20,13 @@ def rand(X,P,F,p):
 def read_data_table(inf):
 	 inputfile = inf
 
-	 datamatrix = np.array([map(float,line.split()[1:]) for line in open(inputfile).readlines()])
+	 datamatrix = np.array([map(float,line.split()[1:]) 
+	 			for line in open(inputfile).readlines()])
 	 min_max_scaler = preprocessing.MinMaxScaler()
 	 data_scaled = min_max_scaler.fit_transform(datamatrix)
 
-	 label = np.array(map(int,[line.split()[0] for line in open(inputfile).readlines()]))
+	 label = np.array(map(int,[line.split()[0] 
+	 			for line in open(inputfile).readlines()]))
 
 	 dataform = {"data":data_scaled,"label":label}
 
@@ -39,7 +41,8 @@ def func(Cost):
 
 	 clf = SVC(C=float(Cost[0]),gamma=float(Cost[1]),kernel='rbf')
 
-	 acc = cross_validation.cross_val_score(clf,val, y, cv=5, scoring='accuracy')
+	 acc = cross_validation.cross_val_score(clf,val, 
+	 			y, cv=5, scoring='accuracy')
 
 	 return np.mean(acc)
 
@@ -49,7 +52,14 @@ def func(Cost):
 # 	return 100 * (sin(x) ** 2 - sin(y)) ** 2 + (1 - sin(x)) ** 2
 
 class DE:
-	def __init__(self, NumVar = 2, Populations = 50, MutFa = 0.7, CroRate = 0.9, Generations = 100, NumRun = 1, XMin = [-2, -2], XMax = [2, 2], Func = func):
+	def __init__(self, NumVar = 2, 
+			Populations = 50, 
+			MutFa = 0.7, 
+			CroRate = 0.9, 
+			Generations = 100, 
+			NumRun = 1, 
+			XMin = [-2, -2], 
+			XMax = [2, 2], Func = func):
 		self.N = NumVar	   # Number of variables
 		self.P = Populations	  # Population size
 		self.F = MutFa	 # Mutation factor
@@ -78,7 +88,8 @@ class DE:
 			Best = []
 			g = 0	   
 			# Initialize the generation
-			X = np.array([[X_min[n]+random.random()*(X_max[n]-X_min[n]) for n in range(N)] for p in range(P)])
+			X = np.array([[X_min[n]+random.random()*(X_max[n]-X_min[n]) 
+					for n in range(N)] for p in range(P)])
 			
 			for i in range(G):
 				g += 1
@@ -126,5 +137,9 @@ if __name__ == '__main__':
 	generation = 1
 	for parameter in bestparameters:
 
-		print "Generation " + str(generation) + ": c = " + str(parameter[0][0]) + " and g = " + str(parameter[0][1]) + ", Acc = " + str(parameter[1])
+		print "Generation " + 
+			str(generation) + ": c = " + 
+			str(parameter[0][0]) + " and g = " + 
+			str(parameter[0][1]) + ", Acc = " + 
+			str(parameter[1])
 		generation += 1
