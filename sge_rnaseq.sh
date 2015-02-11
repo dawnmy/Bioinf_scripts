@@ -5,8 +5,8 @@
 #$ -b n
 ## -q all.q
 #$ -i /dev/null
-#$ -e /vol/cluster-data/dzhiluo/sge_logs/
-#$ -o /vol/cluster-data/dzhiluo/sge_logs/
+#$ -e /home/user/sge_logs/
+#$ -o /home/user/sge_logs/
 #$ -cwd
 
 # The directives above are for the Sun Grid Engine
@@ -15,20 +15,13 @@
 # -q all.q: Job will be sumitted in queue all.q
 
 
-# I M P O R T A N T:
-# DO NOT write stdout and stderr logfiles (-o and -e directives) to the 
-# user home partition since this would trash the fileserver and slow down
-# the system for other users!!!! Use /vol/cluster-data/USERNAME/WHATEVER 
-# instead!
-
-
 # such a script can be submitted with: qsub sge_qc.sh
 
 
 # print local hostname and PATH variable to STDOUT. This will appear in the jobs STDOUT log 
 
 # setup pathes
-export FASTQ_MCF=/home/dzhiluo/tools/ea-utils/fastq-mcf
+export FASTQ_MCF=/tools/ea-utils/fastq-mcf
 export BOWTIE2=/vol/biotools/bin/bowtie2
 export NCORE=20
 export SAMTOOLS=/vol/biotools/bin/samtools
