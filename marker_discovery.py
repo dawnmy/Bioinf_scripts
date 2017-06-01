@@ -79,24 +79,6 @@ class FS:
         markers = selector.support_
         return(self.data.columns[markers])
 
-        # print("Optimal number of features : %d" % selector.n_features_)
-        # print(self.data.columns[markers])
-
-        # # Plot number of features VS. cross-validation scores
-        # plt.figure()
-        # plt.xlabel("Number of features selected")
-        # plt.ylabel("Cross validation score (nb of correct classifications)")
-        # plt.plot(range(1, len(selector.grid_scores_) + 1), selector.grid_scores_)
-        # plt.show()
-
-
-        # clf = SVC(kernel="linear", C=1)
-        # Recursive feature elimination with 4-fold cross validation
-        # rfecv = RFECV(clf, step=1, cv=4)
-
-        # selector1 = rfecv.fit(X_train, y_train)
-        # pass
-
 
 class Classifier:
 
@@ -162,11 +144,6 @@ def main():
     whole_dataset = dp.pd.concat(frames)
     # data_scaled = min_max_scaler.fit_transform(datamatrix)
     whole_stand = dp.standardization(whole_dataset, method='max_min')
-    # training_stand = whole_stand.xs(
-    #                             'training',
-    #                             level='dataset', drop_level=False
-    #                             )
-
     training_stand = whole_stand.xs(
                         'training',
                         level='dataset',
@@ -176,8 +153,7 @@ def main():
     # print(training_label)
 
     fs1 = FS(training_stand, training_label)
-    # print(fs1.data)
-    # print(training_stand['samples'])
+
     fs1.edgeR()
     # markers = fs1.fsRFE(cv=4)
     # print(markers)
