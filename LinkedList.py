@@ -85,6 +85,16 @@ class LinkedList(object):
             current = current.next
             current_idx += 1
 
+    def reverse(self):
+        previous = None
+        current = self.head
+        while current:
+            tmp = current
+            current = current.next
+            tmp.next = previous
+            previous = tmp
+            self.head = previous
+
 
 if __name__ == "__main__":
     LL = LinkedList()
